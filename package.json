@@ -1,0 +1,27 @@
+{
+  "name": "moviedb",
+  "version": "1.0.0",
+  "description": "Movie Database",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliAyb/MovieDB.git"
+  },
+  "author": "Ali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliAyb/MovieDB/issues"
+  },
+  "homepage": "https://github.com/AliAyb/MovieDB#readme"
+  
+}
