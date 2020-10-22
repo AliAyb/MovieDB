@@ -81,6 +81,23 @@ app.get('/movies/read/id/:id' , (req, res) => {
     }
  
  })
+app.get('/movies/add', (req, res) => {
+    if(req.query.title == ''|| typeof req.query.title === 'undefined'|| 
+    req.query.year == ''  || typeof req.query.year === 'undefined'|| !(/([0-9]{4})/.test(req.query.year))
+     || isNaN(req.query.year) ){
+        res.status(403).send('error:true, message:you cannot create a movie without providing a title and a year')
+    }
+    else if (req.query.rating == "" || typeof req.query.rating === 'undefined'){
+        movie = {title: req.query.title, year: req.query.year, rating: 4}
+        movies.push(movie)
+        res.send(movies)
+    }
+    else {
+        movie = {title: req.query.title, year: req.query.year, rating: req.query.rating}
+        movies.push(movie)
+        res.send(movies)
 
+    }
+})
 
 
