@@ -72,7 +72,7 @@ app.get('/movies/read/id/:id' , (req, res) => {
     }
  
  })
-app.get('/movies/add', (req, res) => {
+app.post('/movies/create', (req, res) => {
     if(req.query.title == ''|| typeof req.query.title === 'undefined'|| 
     req.query.year == ''  || typeof req.query.year === 'undefined'|| !(/([0-9]{4})/.test(req.query.year))
      || isNaN(req.query.year) ){
@@ -90,12 +90,26 @@ app.get('/movies/add', (req, res) => {
 
     }
 })
-app.get('/movies/delete/:id', (req,res) => {
+app.delete('/movies/delete/:id', (req, res) => {
     if(req.params.id<=0 || req.params.id>movies.length)
     res.status(404).send("error:true, message:the movie "+req.params.id+" does not exist");
     else{
         movies.splice(req.params.id-1,1);
         res.send(movies);
+    }
+})
+app.put('/movies/update/:id', (req, res) => {
+    if (req.params.id <= 0 || req.params.id > movies.length) {
+        res.status(404).send(' error:true, message:the movie ' + req.params.id + ' does not exist')
+    } else {
+        if ((!(req.query.title == '' || typeof req.query.title === 'undefined')))
+            movies[req.params.id - 1].title = req.query.title;
+        if (!(req.query.rating == '' || typeof req.query.rating === 'undefined'))
+            movies[req.params.id - 1].rating = req.query.rating;
+        if (/([0-9]{4})/.test(req.query.year))
+            movies[req.params.id - 1].year = req.query.year;
+
+        res.status(200).send(movies);
     }
 })
 
